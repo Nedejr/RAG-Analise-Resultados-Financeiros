@@ -17,6 +17,7 @@ import prompts
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_API_KEY')
 
+
 def extrair_texto_pdf(caminho_pdf):
     
     # Extrai o texto de um arquivo PDF.
@@ -25,8 +26,6 @@ def extrair_texto_pdf(caminho_pdf):
     
     for pagina in doc:
         texto_completo += pagina.get_text("text") + "\n"
-
-    
     
     return texto_completo
 
@@ -60,7 +59,9 @@ def criar_ou_carregar_base_vetorial(texto):
 
     return vetorstore
 
+
 def analisar_financas(vetorstore, pergunta):
+
     """
     Executa a busca semântica e analisa os resultados usando um modelo de linguagem.
     """
@@ -75,6 +76,7 @@ def analisar_financas(vetorstore, pergunta):
 
     resposta = chain.invoke(pergunta)
     return resposta['result']
+
 
 def salvar_arquivo(resposta, nome_arquivo):
     # Obtém a data e hora atual
@@ -95,6 +97,7 @@ def salvar_arquivo(resposta, nome_arquivo):
         print(f'Erro ao abrir o arquivo: {error}')
     
     print(f"✅ ### Resposta salva com sucesso em: {nome_arquivo}")
+
 
 if __name__ == "__main__":
 
